@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { LoginServiceService } from '../service/login-service-service';
 
 export interface Usuario {
-  username: string;
-  password: string;
+  username: String;
+  password: String;
 }
 
 @Component({

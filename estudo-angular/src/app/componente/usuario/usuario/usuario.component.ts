@@ -10,25 +10,35 @@ import { User } from 'src/app/model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuarios: Observable<User[]>;
+  users: User[] = [];
 
-  constructor(private usuarioService: UsuarioService) {
-    this.usuarios = new Observable<User[]>();
-   }
+  constructor(private usuarioService: UsuarioService) {}
 
-    ngOnInit() {
-      this.usuarioService.getUsuarioList().subscribe(data => {
-        this.usuarios = data;
-      });
-    }
-
-    deletarUsuario(id:Number){
-      this.usuarioService.deletarUsuarioList(id).subscribe(data => {
-        console.log('retorno do metodo delete' + data);
-        this.usuarioService.getUsuarioList().subscribe(data => {
-          this.usuarios = data;
-        });
-      });
-    }
-
+  ngOnInit() {
+    this.carregarUsuarios();
   }
+
+  carregarUsuarios() {
+    this.usuarioService.getUsuarioList().subscribe(
+      (data: User[]) => {
+        this.users = data;
+      },
+      error => {
+        console.log('Ocorreu um erro ao buscar os usuários:', error);
+      }
+    );
+  }
+
+  deletarUsuario(id: Number) {
+    this.usuarioService.deletarUsuarioList(id).subscribe(
+      () => {
+        console.log(`Usuário com ID ${id} excluído com sucesso.`);
+        // Recarregar a lista após a exclusão
+        this.carregarUsuarios();
+      },
+      error => {
+        console.log(`Erro ao excluir usuário com ID ${id}:`, error);
+      }
+    );
+  }
+}

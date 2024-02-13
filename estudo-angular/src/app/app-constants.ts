@@ -8,6 +8,6 @@ export class AppConstants{
 
     public static get usuariosUrl(): string {return this.baseServidor + "usuario/buscaUsuarios"}
 
-    public static get deleteusuariosUrl(): string {return this.baseServidor + "deleteusuario/"}
+    public static get deleteusuariosUrl(): string {return this.baseServidor + "usuario/deletaUsuario/"}
 
 }
