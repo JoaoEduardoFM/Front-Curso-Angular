@@ -4,10 +4,10 @@ export class AppConstants{
 
     public static get baseLogin(): string {return this.baseServidor + "contexto projeto/login"}
 
-    public static get baseUrl(): string {return this.baseServidor + "contexto url"}
+    public static get baseUrl(): string {return this.baseServidor + "usuario/"}
 
     public static get usuariosUrl(): string {return this.baseServidor + "usuario/buscaUsuarios"}
 
-    public static get deleteusuariosUrl(): string {return this.baseServidor + "usuario/deletaUsuario/"}
+    public static get deleteusuariosUrl(): string {return this.baseUrl + "deletaUsuario/"}
 
 }

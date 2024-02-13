@@ -22,6 +22,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.getUsuarioList().subscribe(
       (data: User[]) => {
         this.users = data;
+        console.log(data);
       },
       error => {
         console.log('Ocorreu um erro ao buscar os usuários:', error);
