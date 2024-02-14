@@ -1,3 +1,18 @@
+<br/>
+<br/>
+
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome">
+  </div>
+
+  <button type="button" (click)="aplicarFiltros()" class="btn btn-primary mb-2">Buscar</button>
+  <button type="button" (click)="carregarUsuarios()"  class="btn btn-primary mb-2" style="margin-left: 5px;" >Limpar</button>
+  
+
+<br/>
+<br/>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -5,7 +20,8 @@
       <th scope="col">Nome</th>
       <th scope="col">Cpf</th>
       <th scope="col">Login</th>
-      <th scope="col">Delete</th>
+      <th scope="col" [width]="10">Deletar</th>
+      <th scope="col" [width]="10">Editar</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +31,11 @@
       <td>{{usuario.cpf}}</td>
       <td>{{usuario.login}}</td>
       <td><button (click)="deletarUsuario(usuario.id)" class="btn btn-primary">Delete</button></td>  
+      <td><button  [routerLink]="['/usuarioAdd', usuario.id]" routerLinkActive="router-link-active" style="margin-left: 5px;" class="btn btn-warning">Editar</button></td>  
     </tr>
   </tbody>
 </table>
+
+<button type="button" [routerLink]="['/usuarioAdd']" routerLinkActive="router-link-active" style="margin-left: 1850px;"    class="btn btn-success mb-2">Novo</button>
+
+</form>

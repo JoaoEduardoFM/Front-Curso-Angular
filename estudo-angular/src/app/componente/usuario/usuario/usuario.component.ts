@@ -11,6 +11,10 @@ import { User } from 'src/app/model/user';
 export class UsuarioComponent implements OnInit {
 
   users: User[] = [];
+  nome : String;
+  login : String;
+  id : Number;
+  cpf : String;
 
   constructor(private usuarioService: UsuarioService) {}
 
@@ -41,5 +45,35 @@ export class UsuarioComponent implements OnInit {
         console.log(`Erro ao excluir usuário com ID ${id}:`, error);
       }
     );
+  }
+
+  consutarNome(){
+    this.usuarioService.getNome(this.nome).subscribe(data =>{
+      this.users =data;
+    })
+  }
+
+  consutarLogin(){
+    this.usuarioService.getLogin(this.login).subscribe(data =>{
+      this.users =data;
+    })
+  }
+
+  consutarId(){
+    this.usuarioService.getId(this.id).subscribe(data =>{
+      this.users =data;
+    })
+  }
+
+  consutarCpf(){
+    this.usuarioService.getCpf(this.cpf).subscribe(data =>{
+      this.users =data;
+    })
+  }
+
+  aplicarFiltros() {
+  if(this.nome != null){
+    this.consutarNome();
+  }
   }
 }

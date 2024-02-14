@@ -14,11 +14,33 @@ export class UsuarioService {
 
     }
 
+    // busca todos usuários
     getUsuarioList() : Observable<any> {
         return this.http.get<any>(AppConstants.usuariosUrl)
     }
 
+    // deleta usuário por id
     deletarUsuarioList(id: Number) : Observable<any> {
         return this.http.delete(AppConstants.deleteusuariosUrl + id, {responseType : 'text'});
+    }
+
+    // busca por nome
+    getNome(nome:String) : Observable<any> {
+        return this.http.get(AppConstants.baseUrl + "buscaPorNome/" + nome);
+    }
+
+    // busca por Login
+    getLogin(login:String) : Observable<any> {
+        return this.http.get(AppConstants.baseUrl + "buscaPorLogin/" + login);
+    }
+
+    // busca por id
+    getId(Id:Number) : Observable<any> {
+        return this.http.get(AppConstants.baseUrl + "buscaPorID/" + Id);
+    }
+
+    // busca por cpf
+    getCpf(cpf:String) : Observable<any> {
+        return this.http.get(AppConstants.baseUrl + "buscaPorCpf/" + cpf);
     }
 }

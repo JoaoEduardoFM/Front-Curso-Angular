@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component'; /*Requisi��es Ajax*/
 import {RouterModule, Routes} from '@angular/router'
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
+import { UsuarioAddComponent } from './componente/usuarioAdd/usuarioAdd.component';
 
 
 export const appRoutes: Routes = [
@@ -14,6 +15,8 @@ export const appRoutes: Routes = [
   {path: 'login', component : LoginComponent},
   {path: '', component : LoginComponent},
   {path: 'user', component : UsuarioComponent},
+  {path: 'usuarioAdd', component : UsuarioAddComponent},
+  {path: 'usuarioAdd/:id', component : UsuarioAddComponent},
 ];
 
 @NgModule({
@@ -21,7 +24,8 @@ export const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    UsuarioAddComponent
   ],
   imports: [
     BrowserModule,
