@@ -1,31 +1,34 @@
 <h3 style="padding: 10px;">Tela de usuario</h3>
 
-<form style="padding: 10px">
+<form style="padding: 10px" #formValidade="ngForm">
 
   <div class="form-row">
     <div class="form-group col-md-1">
       <label for="id">ID</label>
-      <input type="text" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
+      <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" readonly="true" name="id" autocomplete="false">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="nome">Nome</label>
-      <input type="text" class="form-control" id="nome" required="true" name="nome" autocomplete="false">
+      <span style="color: red; font-size: 23px;" *ngIf="nomeValidade.invalid">*</span>
+      <input type="text" class="form-control" id="nome" #nomeValidade="ngModel" [(ngModel)]="usuario.nome" required="true" name="nome" autocomplete="false">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="login">E-mail ou login</label>
-      <input type="text" class="form-control" id="login" name="login" required="true" autocomplete="false">
+      <label for="login">login</label>
+      <span style="color: red; font-size: 23px;" *ngIf="loginValidade.invalid">*</span>
+      <input type="text" class="form-control" id="login" [(ngModel)]="usuario.login" #loginValidade="ngModel" name="login" required="true" autocomplete="false">
     </div>
 
 
     <div class="form-group col-md-6">
       <label for="senha">Senha</label>
-      <input type="password" class="form-control" id="senha" name="senha" required="true" autocomplete="false">
+      <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
+      <input type="password" class="form-control" id="senha" [(ngModel)]="usuario.senha" #senhaValidade="ngModel" name="senha" required="true" autocomplete="false">
     </div>
 
   </div>
@@ -34,17 +37,22 @@
   <div class="form-row">
     <div class="form-group col-md-3">
       <label for="cpf">CPF</label>
-      <input type="text" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
+      <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="usuario.cpf" required="true" autocomplete="false">
     </div>
   </div>
+
+  
 
   <div class="form-row">
     <div class="form-group col-md-6" style="margin-left: 1680px;">
         <button type="button" class="btn btn-primary"  [routerLink]="['/user']" routerLinkActive="router-link-active" >Voltar</button>
-        <button type="button" class="btn btn-primary" style="margin-left: 10px;">Novo</button>
-        <button type="button" class="btn btn-primary" style="margin-left: 10px;">Salvar</button>
+        <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;">Novo</button>
+        <button type="button" class="btn btn-primary" [disabled] = formValidade.invalid (click)="salvarUser()" style="margin-left: 10px;">Salvar</button>
     </div>
 </div>
 
+<div *ngIf="successMessage" class="alert alert-success" role="alert" style="margin-left: 1600px;">
+  {{ successMessage }}
+</div>
 
 </form>

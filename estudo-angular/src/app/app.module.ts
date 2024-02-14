@@ -16,7 +16,8 @@ export const appRoutes: Routes = [
   {path: '', component : LoginComponent},
   {path: 'user', component : UsuarioComponent},
   {path: 'usuarioAdd', component : UsuarioAddComponent},
-  {path: 'usuarioAdd/:id', component : UsuarioAddComponent},
+  {path: 'usuarioAdd', component : UsuarioAddComponent},
+  {path: 'usuarioAdd/:id', component : UsuarioAddComponent}
 ];
 
 @NgModule({

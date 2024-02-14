@@ -18,9 +18,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(1 === 1){
-      
-    }
   }
 
   public sair(){
@@ -28,5 +25,14 @@ export class AppComponent implements OnInit{
     this.router.navigate(['login']);
 
   }
+
+  public esconderMenu(): boolean {
+    // Verifica se a rota atual é '/login'
+    if(this.router.url === '/login'){
+      return true;
+    }else{
+      return false;
+    }
+}
 
 }

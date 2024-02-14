@@ -4,6 +4,7 @@ import { Usuario } from "../app.component";
 import { Router } from '@angular/router';
 import { Observable } from "rxjs";
 import { AppConstants } from "../app-constants";
+import { User } from "../model/user";
 
 @Injectable({
     providedIn: 'root'
@@ -35,12 +36,16 @@ export class UsuarioService {
     }
 
     // busca por id
-    getId(Id:Number) : Observable<any> {
-        return this.http.get(AppConstants.baseUrl + "buscaPorID/" + Id);
+    getId(id: Number) : Observable<any> {
+        return this.http.get<any>(AppConstants.baseUrl + "buscaPorID/" + id);
     }
 
     // busca por cpf
     getCpf(cpf:String) : Observable<any> {
         return this.http.get(AppConstants.baseUrl + "buscaPorCpf/" + cpf);
+    }
+
+    saveUsuario(usuario: User) : Observable<any>{
+        return this.http.post<any>(AppConstants.baseUrl + "cadastraUsuario/", usuario);
     }
 }
