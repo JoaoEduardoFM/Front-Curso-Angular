@@ -1,3 +1,5 @@
+import { Numero } from "./numero";
+
 export class User {
     id: Number;
     nome: String;

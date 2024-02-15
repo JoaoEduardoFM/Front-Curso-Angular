@@ -2,24 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
-import { ActivatedRoute} from '@angular/router';
-
-
-
+import { ActivatedRoute } from '@angular/router';
+import { Numero } from 'src/app/model/numero';
+import { NumeroService } from 'src/app/service/numero.service';
 
 @Component({
   selector: 'app-usuarioAdd',
   templateUrl: './usuarioAdd.component.html',
   styleUrls: ['./usuarioAdd.component.css']
-  
 })
 export class UsuarioAddComponent implements OnInit {
 
+  telefones: Numero[] = [];
   usuario = new User();
   successMessage: string = ''; // Mensagem de sucesso
   successTimeout: any; // Referência para o timeout
 
-  constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) {}
+  constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService, private numeroService: NumeroService) {}
 
   ngOnInit() {
     let idString = this.routeActive.snapshot.paramMap.get('id');
@@ -31,21 +30,25 @@ export class UsuarioAddComponent implements OnInit {
       if (!isNaN(id)) {
         this.usuarioService.getId(id).subscribe(data => {
           this.usuario = data;
+          console.log('usuários:' + data);
         });
+
+        // Carrega os números após carregar o usuário
+        this.carregarNumeros(id);
       } else {
         console.error('ID não é um número válido.');
       }
     }
   }
 
-  salvarUser(){
-    if(this.usuario.id != null && this.usuario.id.toString().trim() != null){
-      this.usuarioService.saveUsuario(this.usuario).subscribe (data =>{
-      this.successMessage = 'Usuário atualizado com sucesso!';
-      this.setSuccessTimeout();
-      })
-    }else{
-      this.usuarioService.saveUsuario(this.usuario).subscribe (data =>{
+  salvarUser() {
+    if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
+      this.usuarioService.saveUsuario(this.usuario).subscribe(data => {
+        this.successMessage = 'Usuário atualizado com sucesso!';
+        this.setSuccessTimeout();
+      });
+    } else {
+      this.usuarioService.saveUsuario(this.usuario).subscribe(data => {
         this.successMessage = 'Usuário cadastrado com sucesso!';
         this.setSuccessTimeout();
         this.novo();
@@ -53,9 +56,19 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  
+  carregarNumeros(id: number) {
+    this.numeroService.getId(id).subscribe(
+      (data: Numero[]) => {
+        this.telefones = data;
+        console.log(data);
+      },
+      error => {
+        console.log('Ocorreu um erro ao buscar os usuários:', error);
+      }
+    );
+  }
 
-  novo(){
+  novo() {
     this.usuario = new User;
   }
 
@@ -67,6 +80,6 @@ export class UsuarioAddComponent implements OnInit {
 
   clearSuccessMessage() {
     this.successMessage = '';
-    clearTimeout(this.successTimeout); // Limpa o timeout
+    clearTimeout(this.successTimeout);
   }
 }
