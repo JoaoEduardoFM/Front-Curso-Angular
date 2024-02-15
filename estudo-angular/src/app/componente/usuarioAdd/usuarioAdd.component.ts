@@ -14,6 +14,7 @@ import { NumeroService } from 'src/app/service/numero.service';
 export class UsuarioAddComponent implements OnInit {
 
   telefones: Numero[] = [];
+  fone = new Numero();
   usuario = new User();
   successMessage: string = ''; // Mensagem de sucesso
   successTimeout: any; // Referência para o timeout
@@ -56,7 +57,20 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  carregarNumeros(id: number) {
+  deleteNumero(id: Number){
+    if (id !== null && confirm("Deseja remover?")) {
+    this.numeroService.deleteNumero(id).subscribe(
+      () => {
+        this.ngOnInit();
+      },
+      error => {
+        console.log(`Erro ao excluir usuário com ID ${id}:`, error);
+      }
+    )
+  }
+}
+
+  carregarNumeros(id: Number) {
     this.numeroService.getId(id).subscribe(
       (data: Numero[]) => {
         this.telefones = data;
@@ -70,6 +84,10 @@ export class UsuarioAddComponent implements OnInit {
 
   novo() {
     this.usuario = new User;
+  }
+
+  addNumero(){
+    
   }
 
   setSuccessTimeout() {
