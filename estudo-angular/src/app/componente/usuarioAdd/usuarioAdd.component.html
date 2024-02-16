@@ -48,7 +48,7 @@
      <div class="card-body" style="padding-left: 1px;">
          <div class="form-row">
              <div class="form-group col-md-3">
-               <input type="text" class="form-control" [(ngModel)]="fone.numero" id="numero" name="numero">
+               <input type="text"  class="form-control" [(ngModel)]="numeroTelefone.numero" id="numero" name="numero">
              </div>
    
               <div class="form-group col-md-2">
@@ -61,11 +61,8 @@
   <table class="table">
     <tbody>
       <tr *ngFor="let numbers of telefones;">  
-        <td>{{numbers.id}}</td>
         <td>{{numbers.numero}}</td>
-        <td>{{numbers.usuarioPk}}</td>
         <td><button  class="btn btn-danger" (click)="deleteNumero(numbers.id)">Delete</button></td>  
-        <td><button  class="btn btn-primary">Editar</button></td>  
       </tr>
     </tbody>
   </table>
@@ -82,6 +79,10 @@
 
 <div *ngIf="successMessage" class="alert alert-success" role="alert" style="margin-left: 1600px;">
   {{ successMessage }}
+</div>
+
+<div *ngIf="alertMessage" class="alert alert-danger" role="alert" style="margin-left: 1600px;">
+  {{ alertMessage }}
 </div>
 
 

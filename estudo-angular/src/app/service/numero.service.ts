@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from "rxjs";
 import { AppConstants } from "../app-constants";
 import { User } from "../model/user";
+import { Numero } from "../model/numero";
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +32,7 @@ export class NumeroService {
     }
 
     // cadastra número
-    saveNumero(numero: User) : Observable<any>{
-        return this.http.post<any>(AppConstants.baseUrl + "cadastraUsuario/", numero);
+    saveNumero(numero: Numero) : Observable<any>{
+        return this.http.post<any>(AppConstants.cadastroNumeroUrl, numero);
     }
 }

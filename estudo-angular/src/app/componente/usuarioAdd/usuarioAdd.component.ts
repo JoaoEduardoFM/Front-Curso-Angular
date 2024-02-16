@@ -14,10 +14,12 @@ import { NumeroService } from 'src/app/service/numero.service';
 export class UsuarioAddComponent implements OnInit {
 
   telefones: Numero[] = [];
-  fone = new Numero();
+  numeroTelefone = new Numero();
   usuario = new User();
   successMessage: string = ''; // Mensagem de sucesso
+  alertMessage: string = ''; // Mensagem de sucesso
   successTimeout: any; // Referência para o timeout
+  alertTimeout: any; // Referência para o timeout
 
   constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService, private numeroService: NumeroService) {}
 
@@ -50,8 +52,8 @@ export class UsuarioAddComponent implements OnInit {
       });
     } else {
       this.usuarioService.saveUsuario(this.usuario).subscribe(data => {
-        this.successMessage = 'Usuário cadastrado com sucesso!';
         this.setSuccessTimeout();
+        this.successMessage = 'Usuário salvo com sucesso!';
         this.novo();
       });
     }
@@ -84,16 +86,39 @@ export class UsuarioAddComponent implements OnInit {
 
   novo() {
     this.usuario = new User;
+    this.numeroTelefone = new Numero();
   }
 
   addNumero(){
-    
+    if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
+      this.numeroTelefone.usuarioPk = this.usuario.id;
+      this.numeroService.saveNumero(this.numeroTelefone).subscribe(data => {
+        this.successMessage = 'Número inserido com sucesso!';
+        this.ngOnInit();
+        this.setSuccessTimeout();
+      });
+    } else {
+        this.novo();
+        this.alertMessage = 'Cadastre um usuário!';
+        this.setAlertTimeout();
+    }
   }
 
+  clearAlertMessage() {
+    this.alertMessage = '';
+ 
+  }
+
+  setAlertTimeout() {
+    this. alertTimeout= setTimeout(() => {
+      this.clearAlertMessage();
+    }, 3000); // 3000 milissegundos = 3 segundos
+  }
+  
   setSuccessTimeout() {
     this.successTimeout = setTimeout(() => {
       this.clearSuccessMessage();
-    }, 2000); // 3000 milissegundos = 2 segundos
+    }, 3000); // 3000 milissegundos = 3 segundos
   }
 
   clearSuccessMessage() {
@@ -101,3 +126,6 @@ export class UsuarioAddComponent implements OnInit {
     clearTimeout(this.successTimeout);
   }
 }
+
+
+

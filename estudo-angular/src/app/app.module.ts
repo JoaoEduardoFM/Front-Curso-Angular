@@ -8,7 +8,10 @@ import {RouterModule, Routes} from '@angular/router'
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
 import { UsuarioAddComponent } from './componente/usuarioAdd/usuarioAdd.component';
+//import { NgxMaskDirective, IConfig } from 'ngx-mask';
 
+//Config mascaras
+//export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 export const appRoutes: Routes = [
   {path : 'home', component : HomeComponent},
