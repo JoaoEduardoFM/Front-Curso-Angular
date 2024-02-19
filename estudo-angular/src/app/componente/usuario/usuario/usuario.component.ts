@@ -15,6 +15,7 @@ export class UsuarioComponent implements OnInit {
   login : String;
   id : Number;
   cpf : String;
+  p: number = 1; // Inicialize a propriedade "p" com um valor numérico
 
   constructor(private usuarioService: UsuarioService) {}
 

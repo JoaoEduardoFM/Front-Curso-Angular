@@ -8,7 +8,8 @@ import {RouterModule, Routes} from '@angular/router'
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
 import { UsuarioAddComponent } from './componente/usuarioAdd/usuarioAdd.component';
-//import { NgxMaskDirective, IConfig } from 'ngx-mask';
+import { NgxPaginationModule,} from 'ngx-pagination';
+
 
 //Config mascaras
 //export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -29,13 +30,16 @@ export const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     UsuarioComponent,
-    UsuarioAddComponent
+    UsuarioAddComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes) // Importe e configure as rotas principais
+    RouterModule.forRoot(appRoutes), // Importe e configure as rotas principais
+    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
