@@ -46,6 +46,6 @@ export class UsuarioService {
     }
 
     saveUsuario(usuario: User) : Observable<any>{
-        return this.http.post<any>(AppConstants.cadastroNumeroUrl, usuario);
+        return this.http.post<any>(AppConstants.cadastroUsuarioUrl, usuario);
     }
 }

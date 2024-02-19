@@ -8,9 +8,11 @@ export class AppConstants{
 
     public static get baseUrl(): string {return this.baseServidor + "usuario/"}
 
-    public static get usuariosUrl(): string {return this.baseServidor + "usuario/buscaUsuarios"}
+    public static get usuariosUrl(): string {return this.baseUrl + "/buscaUsuarios"}
 
     public static get deleteusuariosUrl(): string {return this.baseUrl + "deletaUsuario/"}
+
+    public static get cadastroUsuarioUrl(): string {return this.baseUrl + "cadastraUsuario/"}
 
     //Endpoints número
     public static get baseUrlNumero(): string {return this.baseServidor + "numero/"}
