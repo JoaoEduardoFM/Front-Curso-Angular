@@ -46,7 +46,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   consutarNome(){
-    this.usuarioService.getNome(this.nome).subscribe(data =>{
+    this.usuarioService.getNomePage(this.nome, this.pagina).subscribe(data =>{
       this.users =data;
     })
   }
