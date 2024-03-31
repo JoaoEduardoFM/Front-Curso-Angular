@@ -15,7 +15,12 @@ export class UsuarioComponent implements OnInit {
   login : String;
   id : Number;
   cpf : String;
-  p: number = 1; // Inicialize a propriedade "p" com um valor numérico
+  p: number = 1;
+  total: number;
+  itemsToPaginate: any[] = [];
+  pageSize: number = 10;
+  currentPage: number = 1;
+  pagina: number = 1;
 
   constructor(private usuarioService: UsuarioService) {}
 
@@ -24,23 +29,15 @@ export class UsuarioComponent implements OnInit {
   }
 
   carregarUsuarios() {
-    this.usuarioService.getUsuarioList().subscribe(
-      (data: User[]) => {
-        this.users = data;
-        console.log(data);
-      },
-      error => {
-        console.log('Ocorreu um erro ao buscar os usuários:', error);
-      }
-    );
+   this.carregarPagina(this.pagina);
   }
 
-  deletarUsuario(id: Number) {
-    this.usuarioService.deletarUsuarioList(id).subscribe(
-      () => {
+
+  deletarUsuario(id: Number, index: number) {
+    this.usuarioService.deletarUsuarioList(id).subscribe(data =>{
         console.log(`Usuário com ID ${id} excluído com sucesso.`);
-        // Recarregar a lista após a exclusão
-        this.carregarUsuarios();
+        //this.users.splice(index, 1)
+        this.carregarPagina(this.pagina);
       },
       error => {
         console.log(`Erro ao excluir usuário com ID ${id}:`, error);
@@ -76,5 +73,17 @@ export class UsuarioComponent implements OnInit {
   if(this.nome != null){
     this.consutarNome();
   }
+  }
+
+  carregarPagina(pageNumber: number) {
+    this.usuarioService.getUsuarioListPage(pageNumber - 1).subscribe(data => {
+      this.pagina = pageNumber;
+      this.users = data.content;
+      this.total = data.totalElements;
+    },
+    error => {
+      console.log('Ocorreu um erro ao buscar os usuários:', error);
+    }
+  );
   }
 }
