@@ -46,26 +46,26 @@ export class UsuarioComponent implements OnInit {
   }
 
   consutarNome(){
-    this.usuarioService.getNomePage(this.nome, this.pagina).subscribe(data =>{
-      this.users =data;
+    this.usuarioService.getNome(this.nome).subscribe(data =>{
+      this.users = data;
     })
   }
 
   consutarLogin(){
     this.usuarioService.getLogin(this.login).subscribe(data =>{
-      this.users =data;
+      this.users = data;
     })
   }
 
   consutarId(){
     this.usuarioService.getId(this.id).subscribe(data =>{
-      this.users =data;
+      this.users = data;
     })
   }
 
   consutarCpf(){
     this.usuarioService.getCpf(this.cpf).subscribe(data =>{
-      this.users =data;
+      this.users = data;
     })
   }
 
