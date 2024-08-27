@@ -1,50 +1,45 @@
-<h3 style="padding: 10px;">Tela de usuario</h3>
-
-<form style="padding: 10px" #formValidade="ngForm">
+<form class="form-inline" #formValidade="ngForm">
+  <h3 style="padding: 10px;">Cadastro Usuário</h3>
   <div class="col-md-8 col-lg-8 bordered-table-container">
-    <div class="form-row">
+
+    <div class="form-group d-flex flex-wrap align-items-center mb-2">
       <div class="form-group col-md-1">
         <label for="id">ID</label>
-        <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" readonly="true" name="id"
-          autocomplete="false">
+        <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" disabled="true" name="id" autocomplete="false">
       </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-3">
         <label for="nome">Nome</label>
-        <span style="color: red; font-size: 23px;" *ngIf="nomeValidade.invalid">*</span>
-        <input type="text" class="form-control" id="nome" #nomeValidade="ngModel" [(ngModel)]="usuario.nome"
-          required="true" name="nome" autocomplete="false">
+        <span class="text-danger" *ngIf="nomeValidade.invalid">*</span>
+        <input type="text" class="form-control" id="nome" #nomeValidade="ngModel" [(ngModel)]="usuario.nome" required
+          name="nome" autocomplete="false" style="margin-left: 10px;">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="cpf">CPF</label>
+        <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
+        <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="usuario.cpf" required="true"
+          autocomplete="false" style="margin-left: 15px;">
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
+    <div class="form-group d-flex flex-wrap align-items-center mb-2">
+
+      <div class="form-group col-md-4">
         <label for="login">login</label>
         <span style="color: red; font-size: 23px;" *ngIf="loginValidade.invalid">*</span>
         <input type="text" class="form-control" id="login" [(ngModel)]="usuario.login" #loginValidade="ngModel"
           name="login" required="true" autocomplete="false">
       </div>
 
-
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-3">
         <label for="senha">Senha</label>
         <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
         <input type="password" class="form-control" id="senha" [(ngModel)]="usuario.senha" #senhaValidade="ngModel"
-          name="senha" required="true" autocomplete="false">
-      </div>
-
-    </div>
-
-
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="cpf">CPF</label>
-        <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="usuario.cpf" required="true"
-          autocomplete="false">
+          name="senha" required="true" autocomplete="false" style="margin-left: 15px;">
       </div>
     </div>
+
   </div>
 
   <div class="col-md-8 col-lg-8 bordered-table-container">
@@ -76,9 +71,11 @@
     <div class="form-group mx-sm-3 mb-2 d-flex justify-content-between">
       <div></div>
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-primary" [routerLink]="['/user']" routerLinkActive="router-link-active">Voltar</button>
+        <button type="button" class="btn btn-primary" [routerLink]="['/user']"
+          routerLinkActive="router-link-active">Voltar</button>
         <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;">Novo</button>
-        <button type="button" class="btn btn-primary" [disabled]=formValidade.invalid (click)="salvarUser()" style="margin-left: 10px;">Salvar</button>
+        <button type="button" class="btn btn-primary" [disabled]=formValidade.invalid (click)="salvarUser()"
+          style="margin-left: 10px;">Salvar</button>
       </div>
     </div>
   </div>
@@ -90,6 +87,7 @@
   <div *ngIf="alertMessage" class="alert alert-danger" role="alert" style="margin-left: 1600px;">
     {{ alertMessage }}
   </div>
+
 
 
 
