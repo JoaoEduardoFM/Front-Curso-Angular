@@ -1,7 +1,6 @@
 export class AppConstants{
 
     //Endpoints usuário
-
     public static get baseServidor(): String { return "http://localhost:8080/"}
 
     public static get baseLogin(): string {return this.baseServidor + "contexto projeto/login"}
@@ -15,7 +14,7 @@ export class AppConstants{
     public static get cadastroUsuarioUrl(): string {return this.baseUrl + "cadastraUsuario/"}
 
     //Endpoints número
-    public static get baseUrlNumero(): string {return this.baseServidor + "numero/"}
+    public static get baseUrlNumero(): string {return this.baseServidor + "Numero/"}
 
     public static get buscaNumeroPk(): string {return this.baseUrlNumero + "buscaPorUsuarioPk/"}
 

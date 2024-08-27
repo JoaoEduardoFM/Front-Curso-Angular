@@ -1,11 +1,3 @@
-.ng-valid[required], .ng-valid.required{
-    border-left: 5px solid #42A948; /*verde*/
-}
-
-.ng-valid:not(form){
-    border-left: 5px solid #a94442; /*vermelho*/
-}
-
 .bordered-table-container {
     border: 1px solid #ddd; /* Borda externa da tabela */
     border-radius: 5px;     /* Arredondar os cantos da borda */

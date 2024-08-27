@@ -6,9 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; /*Requisi��es Ajax*/ 
 import {RouterModule, Routes} from '@angular/router'
 import { LoginComponent } from './login/login.component';
-import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
-import { UsuarioAddComponent } from './componente/usuarioAdd/usuarioAdd.component';
+import { UsuarioComponent } from './usuario-pesquisa/usuario.component';
 import { NgxPaginationModule,} from 'ngx-pagination';
+import { UsuarioAddComponent } from './usuario-cadastro/usuarioAdd.component';
 
 
 //Config mascaras

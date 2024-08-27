@@ -1,0 +1,88 @@
+<h3 style="padding: 10px;">Tela de usuário</h3>
+
+<form class="form-inline">
+  <div class="col-md-8 col-lg-8 bordered-table-container">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="id">ID</label>
+        <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" readonly="true" name="id"
+          autocomplete="false">
+      </div>
+
+      <div class="form-group col-md-9">
+        <label for="nome">Nome</label>
+        <span style="color: red; font-size: 23px;" *ngIf="nomeValidade.invalid">*</span>
+        <input type="text" class="form-control" id="nome" #nomeValidade="ngModel" [(ngModel)]="usuario.nome"
+          required="true" name="nome" autocomplete="false">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="login">Login</label>
+        <span style="color: red; font-size: 23px;" *ngIf="loginValidade.invalid">*</span>
+        <input type="text" class="form-control" id="login" [(ngModel)]="usuario.login" #loginValidade="ngModel"
+          name="login" required="true" autocomplete="false">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="senha">Senha</label>
+        <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
+        <input type="password" class="form-control" id="senha" [(ngModel)]="usuario.senha" #senhaValidade="ngModel"
+          name="senha" required="true" autocomplete="false">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="usuario.cpf" required="true"
+          autocomplete="false">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-lg-8 bordered-table-container">
+    <div class="card text-center">
+      <div class="card-header">
+        Telefone Contato
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 d-flex">
+          <input type="text" class="form-control mr-2" [(ngModel)]="numeroTelefone.numero" id="numero" name="numero">
+          <button class="btn btn-primary" style="margin-left: 15px;" (click)="addNumero()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <table class="table small-table">
+      <tbody>
+        <tr *ngFor="let numbers of telefones;">
+          <td>{{numbers.numero}}</td>
+          <td><button class="btn btn-danger" (click)="deleteNumero(numbers.id)">Deletar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-8 col-lg-8 bordered-table-container">
+    <div class="form-row d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button type="button" class="btn btn-primary" [routerLink]="['/user']"
+          routerLinkActive="router-link-active">Voltar</button>
+        <button type="button" class="btn btn-primary" (click)="salvarUser()" style="margin-left: 10px;">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-lg-8 d-flex justify-content-end">
+    <div *ngIf="successMessage" class="alert alert-success" role="alert" style="margin-right: 20px;">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="alertMessage" class="alert alert-danger" role="alert">
+      {{ alertMessage }}
+    </div>
+  </div>
+</form>

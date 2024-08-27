@@ -11,10 +11,10 @@ import { User } from 'src/app/model/user';
 export class UsuarioComponent implements OnInit {
 
   users: User[] = [];
-  nome : String;
-  login : String;
-  id : Number;
-  cpf : String;
+  nome: String;
+  login: String;
+  id: Number;
+  cpf: String;
   p: number = 1;
   total: number;
   itemsToPaginate: any[] = [];
@@ -22,57 +22,63 @@ export class UsuarioComponent implements OnInit {
   currentPage: number = 1;
   pagina: number = 1;
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.carregarUsuarios();
   }
 
   carregarUsuarios() {
-   this.carregarPagina(this.pagina);
+    this.carregarPagina(this.pagina);
+  }
+
+  limparCampos() {
+    this.nome = '';
+    this.carregarPagina(this.pagina);
+    this.ngOnInit;
   }
 
 
   deletarUsuario(id: Number, index: number) {
-    this.usuarioService.deletarUsuarioList(id).subscribe(data =>{
-        console.log(`Usuário com ID ${id} excluído com sucesso.`);
-        //this.users.splice(index, 1)
-        this.carregarPagina(this.pagina);
-      },
+    this.usuarioService.deletarUsuarioList(id).subscribe(data => {
+      console.log(`Usuário com ID ${id} excluído com sucesso.`);
+      //this.users.splice(index, 1)
+      this.carregarPagina(this.pagina);
+    },
       error => {
         console.log(`Erro ao excluir usuário com ID ${id}:`, error);
       }
     );
   }
 
-  consutarNome(){
-    this.usuarioService.getNome(this.nome).subscribe(data =>{
+  consutarNome() {
+    this.usuarioService.getNome(this.nome).subscribe(data => {
       this.users = data;
     })
   }
 
-  consutarLogin(){
-    this.usuarioService.getLogin(this.login).subscribe(data =>{
+  consutarLogin() {
+    this.usuarioService.getLogin(this.login).subscribe(data => {
       this.users = data;
     })
   }
 
-  consutarId(){
-    this.usuarioService.getId(this.id).subscribe(data =>{
+  consutarId() {
+    this.usuarioService.getId(this.id).subscribe(data => {
       this.users = data;
     })
   }
 
-  consutarCpf(){
-    this.usuarioService.getCpf(this.cpf).subscribe(data =>{
+  consutarCpf() {
+    this.usuarioService.getCpf(this.cpf).subscribe(data => {
       this.users = data;
     })
   }
 
   aplicarFiltros() {
-  if(this.nome != null){
-    this.consutarNome();
-  }
+    if (this.nome != null) {
+      this.consutarNome();
+    }
   }
 
   carregarPagina(pageNumber: number) {
@@ -81,9 +87,9 @@ export class UsuarioComponent implements OnInit {
       this.users = data.content;
       this.total = data.totalElements;
     },
-    error => {
-      console.log('Ocorreu um erro ao buscar os usuários:', error);
-    }
-  );
+      error => {
+        console.log('Ocorreu um erro ao buscar os usuários:', error);
+      }
+    );
   }
 }
