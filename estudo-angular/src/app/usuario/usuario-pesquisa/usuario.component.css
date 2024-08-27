@@ -1,7 +1,0 @@
-.bordered-table-container {
-    border: 1px solid #ddd; /* Borda externa da tabela */
-    border-radius: 5px;     /* Arredondar os cantos da borda */
-    padding: 15px;          /* Espaço entre a borda e o conteúdo */
-    background-color: #fff; /* Cor de fundo para a área ao redor da tabela */
-  }
-  

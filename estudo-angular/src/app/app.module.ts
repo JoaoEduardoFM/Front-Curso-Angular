@@ -8,8 +8,7 @@ import {RouterModule, Routes} from '@angular/router'
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario-pesquisa/usuario.component';
 import { NgxPaginationModule,} from 'ngx-pagination';
-import { UsuarioAddComponent } from './componente/usuarioAdd/usuarioAdd.component'; 
-
+import { UsuarioAddComponent } from './usuario/usuario-cadastro/usuarioAdd.component'; 
 
 //Config mascaras
 //export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
