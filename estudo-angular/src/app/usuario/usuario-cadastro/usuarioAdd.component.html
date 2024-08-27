@@ -4,39 +4,33 @@
 
     <div class="form-group d-flex flex-wrap align-items-center mb-2">
       <div class="form-group col-md-1">
-        <label for="id">ID</label>
-        <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" disabled="true" name="id" autocomplete="false">
+        <input type="text" class="form-control" [(ngModel)]="usuario.id" id="id" disabled="true" name="id"
+          autocomplete="false" placeholder="Id">
       </div>
+    </div>
 
-      <div class="form-group col-md-3">
-        <label for="nome">Nome</label>
-        <span class="text-danger" *ngIf="nomeValidade.invalid">*</span>
+    <div class="form-group d-flex flex-wrap align-items-center mb-2">
+      <div class="form-group col-md-4">
         <input type="text" class="form-control" id="nome" #nomeValidade="ngModel" [(ngModel)]="usuario.nome" required
-          name="nome" autocomplete="false" style="margin-left: 10px;">
+          name="nome" autocomplete="false"placeholder="Nome">
       </div>
 
       <div class="form-group col-md-3">
-        <label for="cpf">CPF</label>
-        <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
         <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="usuario.cpf" required="true"
-          autocomplete="false" style="margin-left: 15px;">
+          autocomplete="false" style="margin-left: 10px;" placeholder="CPF">
       </div>
     </div>
 
     <div class="form-group d-flex flex-wrap align-items-center mb-2">
 
       <div class="form-group col-md-4">
-        <label for="login">login</label>
-        <span style="color: red; font-size: 23px;" *ngIf="loginValidade.invalid">*</span>
-        <input type="text" class="form-control" id="login" [(ngModel)]="usuario.login" #loginValidade="ngModel"
-          name="login" required="true" autocomplete="false">
+        <input type="text" class="form-control" id="login" required="true" [(ngModel)]="usuario.login"
+          #loginValidade="ngModel" name="login" required="true" autocomplete="false" placeholder="Login">
       </div>
 
       <div class="form-group col-md-3">
-        <label for="senha">Senha</label>
-        <span style="color: red; font-size: 23px;" *ngIf="senhaValidade.invalid">*</span>
         <input type="password" class="form-control" id="senha" [(ngModel)]="usuario.senha" #senhaValidade="ngModel"
-          name="senha" required="true" autocomplete="false" style="margin-left: 15px;">
+          name="senha" required="true" autocomplete="false" style="margin-left: 10px;" placeholder="Senha">
       </div>
     </div>
 

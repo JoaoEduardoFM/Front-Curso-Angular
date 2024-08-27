@@ -2,11 +2,12 @@
   <h3 style="padding: 10px;">Pesquisa Usuário</h3>
   <div class="col-md-8 col-lg-8 bordered-table-container">
     <div class="form-group mx-sm-3 mb-2 d-flex justify-content-between">
-      <div class="col-md-6 col-lg-4 pr-0"> <!-- Ajuste a largura com base em suas necessidades -->
-        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome"
+
+      <div class="col-md-6 col-lg-4 pr-0">
+        <input type="text" class="form-control" id="nome" name="nome" required="false" [(ngModel)]="nome"
           placeholder="Pesquisa por nome">
       </div>
-      <div class="d-flex align-items-center"> <!-- Alinha os botões verticalmente -->
+      <div class="d-flex align-items-center">
         <button type="button" (click)="aplicarFiltros()" class="btn btn-primary mb-2"
           style="margin-right: 20px;">Buscar</button>
         <button type="button" (click)="limparCampos()" class="btn btn-secondary mb-2">Limpar</button>
@@ -23,8 +24,8 @@
           <th scope="col">Nome</th>
           <th scope="col">Cpf</th>
           <th scope="col">Login</th>
-          <th scope="col" style="width: 10%;">Editar</th>
           <th scope="col" style="width: 10%;">Deletar</th>
+          <th scope="col" style="width: 10%;">Editar</th>   
         </tr>
       </thead>
       <tbody>
@@ -34,12 +35,16 @@
           <td>{{user.nome}}</td>
           <td>{{user.cpf}}</td>
           <td>{{user.login}}</td>
-          <td><button [routerLink]="['/usuarioAdd', user.id]" routerLinkActive="router-link-active"
-              class="btn btn-warning btn-sm">Editar</button></td>
-          <td><button (click)="deletarUsuario(user.id, indice)" class="btn btn-danger btn-sm">Delete</button></td>
+          <td><button (click)="deletarUsuario(user.id, indice)" class="btn btn-primary">Delete</button></td>
+          <td><button [routerLink]="['/usuarioAdd', user.id]" routerLinkActive="router-link-active" style="margin-left: 5px;" class="btn btn-warning">Editar</button></td>
         </tr>
       </tbody>
     </table>
+
+    <div class="text-center">
+      <pagination-controls (pageChange)="carregarPagina(p = $event);" previousLabel="Voltar"
+        nextLabel="Avançar"></pagination-controls>
+    </div>
   </div>
 
   <div class="col-md-8 col-lg-8 bordered-table-container">
