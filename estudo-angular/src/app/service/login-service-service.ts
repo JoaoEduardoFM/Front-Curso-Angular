@@ -12,8 +12,8 @@ export class LoginServiceService {
 
     constructor(private http: HttpClient, private router: Router) {}
 
-    public login(Usuario: Usuario): boolean {
-        if (Usuario.username === 'adm' && Usuario.password === 'adm') {
+    public login(usuario: Usuario): boolean {
+        if (usuario.username === 'adm' && usuario.password === 'adm') {
             this.router.navigate(['/home']);
             return true;
         } else {

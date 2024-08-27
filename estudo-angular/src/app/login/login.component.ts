@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { LoginServiceService } from '../service/login-service-service';
 
 export interface Usuario {
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 }
 
 @Component({
@@ -11,15 +11,13 @@ export interface Usuario {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent {
 
-  title = 'estudo-angular';
+  Usuario: Usuario = { username: '', password: '' };
 
-  Usuario ={username: '', password: ''}
+  constructor(private loginservice: LoginServiceService) { }
 
-  constructor(private loginservice: LoginServiceService){}
-
-  public login(){
-    this.loginservice.login(this.Usuario)
+  public login() {
+    this.loginservice.login(this.Usuario);
   }
 }
